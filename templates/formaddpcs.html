@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Computadora</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Añadir Computadora</h1>
+    <form action="/addpcs" method="post">
+        <input type="text" name="marca" placeholder="Marca" required>
+        <input type="number" name="tipo" placeholder="Tipo" required>
+        <input type="text" name="sistema" placeholder="Sistema" required>
+        <input type="text" name="procesador" placeholder="Procesador" required>
+        <button type="submit">Añadir</button>
+    </form>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

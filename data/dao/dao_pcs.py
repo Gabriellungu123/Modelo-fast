@@ -25,3 +25,24 @@ class DaoPcs :#Creao una clase
         cursor.close() #Cierro cursor
 
     #Hacer el borrar 
+    def delete(self, db, marca: str): #Define el metodo delete que recibe el db(conexion con la base de datos), y marca 
+        cursor = db.cursor() #- Crea un cursor para ejecutar consultas SQL en la base de datos.
+        sql = "DELETE FROM pcs WHERE marca = %s" #- Define la consulta SQL para eliminar registros de la tabla pcs donde la columna marca coincida con el valor proporcionado.
+        data = (marca,) # Es en donde se usado en la consulta de SQL
+        cursor.execute(sql, data) # - Ejecuta la consulta SQL con los datos proporcionados.
+        db.commit() #Confirma los cambios en la base de datos, asegurando que la eliminación se haga efectiva.
+        cursor.close() #- Cierra el cursor para liberar recursos.
+
+
+
+
+    #Hacer el actualizar
+    def update(self, db, marca: str, tipo:int, sistema:str, procesador:str): # - Define el método update, que recibe self, db (conexión a la base de datos), marca, tipo, sistema y procesador como parámetros.
+        cursor = db.cursor() #- Crea un cursor para ejecutar consultas SQL en la base de datos.
+        sql = "UPDATE pcs SET marca = %s, tipo = %s, sistema = %s WHERE procesador = %s" # - Define la consulta SQL para actualizar los valores de marca, tipo y sistema en la tabla pcs donde el procesador coincida con el valor proporcionado.
+        data = (marca, tipo, sistema, procesador)# - Crea una tupla con los valores que serán usados en la consulta SQL.
+        cursor.execute(sql, data)#- Ejecuta la consulta SQL con los datos proporcionado
+        db.commit()# Confirma los cambios en la base de datos, asegurando que la actualización se haga efectiva.
+        cursor.close()#- Cierra el cursor para liberar recursos.
+
+

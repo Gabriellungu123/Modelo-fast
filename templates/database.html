@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Computadoras</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Lista de Computadoras</h1>
+    <ul>
+        {% for pc in pcs %}
+            <li>Marca: {{ pc.marca }}, Tipo: {{ pc.tipo }}, Sistema: {{ pc.sistema }}, Procesador: {{ pc.procesador }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
