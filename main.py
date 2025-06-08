@@ -1,6 +1,11 @@
+# Lo que tiene que tener 
 from typing import Union
-
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Form
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+#Para añadir la carpeta data
+from data.modelo.menu import Menu
+from 
 
 app = FastAPI()
 
