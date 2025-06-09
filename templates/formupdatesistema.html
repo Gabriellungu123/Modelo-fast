@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Actualizar Computadora</title>
-    <link rel="stylesheet" href="{{ url_for('static',path='css/style.css') }}">
-</head>
-<body>
-    <h1>Actualizar Computadora</h1>
-    <form action="/formupdatesistemas" method="post">
-        <input type="text" name="marca" placeholder="Marca de la computadora" required>
+{% extends "default.html" %}
+
+{% block title %}Actualizar Computadora{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">  <!-- Mantengo el mismo CSS -->
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-9">
+    <h1>Actualizar Información de la Computadora</h1> 
+    <br>
+
+    <form action="{{ url_for('update_sistemas') }}" method="post"> <!-- EL URL_FOR ES LO QUE PONES EN EL DEF DEL MAIN -->
+        <select name="marca" required>
+            {% for pc in pcs %}
+                <option value="{{ pc.marca }}">{{ pc.marca }}</option>
+            {% endfor %}
+        </select>
         <input type="number" name="tipo" placeholder="Nuevo Tipo" required>
-        <input type="text" name="sistema" placeholder="Nuevo Sistema" required>
+        <input type="text" name="sistema" placeholder="Nuevo Sistema Operativo" required>
         <input type="text" name="procesador" placeholder="Nuevo Procesador" required>
-        <button type="submit">Actualizar</button>
+        <input type="submit" value="Actualizar">
     </form>
-    <a href="/">Volver al inicio</a>
-</body>
-</html>
+</div>
+{% endblock %}

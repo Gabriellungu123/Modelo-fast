@@ -111,7 +111,7 @@ def form_update_sistema(request: Request): # Representa la solicitud del usuario
         context={"menu": menu, "pcs": pcs} # Se envían datos a la plantilla para que puedan ser usados en el HTML.
     )
 
-@app.post("/formupdatesistemas")
+@app.post("/update_sistemas")
 def update_sistemas(
     request: Request,  #Representa la solicitud del usuario.
     marca: Annotated[str, Form()], # Son los datos que el usuario envió en el formulario.

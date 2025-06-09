@@ -1,13 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Computadora Añadida</title>
-    <link rel="stylesheet" href="{{ url_for('static',path='css/style.css') }}">
-</head>
-<body>
-    <h1>Computadora añadida correctamente</h1>
-    <a href="/database">Ver lista de computadoras</a>
-    <a href="/">Volver al inicio</a>
-</body>
-</html>
+{% extends "default.html" %}
+
+{% block title %}Añadir más computadoras{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="col-sm-9">
+    <br>
+    <h1>COMPUTADORA AÑADIDA CORRECTAMENTE</h1>
+    <br>
+    
+    <h1>Puedes añadir más computadoras si lo deseas</h1> 
+    <br>
+    <form action="{{ url_for('add_pcs') }}" method="post">
+        <input type="text" name="marca" placeholder="Marca de la computadora" required>
+        <input type="number" name="tipo" placeholder="Tipo de computadora" required>
+        <input type="text" name="sistema" placeholder="Sistema operativo" required>
+        <input type="text" name="procesador" placeholder="Procesador" required>
+        <input type="submit" value="Añadir">
+    </form>
+
+    <br>
+    <a href="{{ url_for('get_pcs') }}">Ver lista de computadoras</a>
+    <a href="{{ url_for('read_root') }}">Volver al inicio</a>
+  </div>
+  <br>
+
+{% endblock %}
