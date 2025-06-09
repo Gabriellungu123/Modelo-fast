@@ -38,18 +38,18 @@ def get_pcs(request: Request): #maneja las solicitudes a /database, - Recibe un 
     return templates.TemplateResponse( #Se devuelve una respuesta renderizada con una plantilla HTML usando
         request=request,#Se pasa la solicitud HTTP a la plantilla.
         name="database.html", #- Se indica que la plantilla a renderizar es "default.html".
-        context={"menu": menu,"pcs": pcs} #- : Se envían variables a la plantilla, permitiendo que menu y pcs sean utilizados dentro de "default.html".
+        context={"menu": menu,"pcs": pcs} #- : Se envían variables a la plantilla, permitiendo que menu y pcs sean utilizados dentro de "database.html".
     )
 
 ##################   Añadir Pcs  ##################
-@app.get("/formaddpcs")
-def form_add_pcs(request: Request):
-    menu = Menu(True, True)
-    pcs = DaoPcs().get_all(database)
-    return templates.TemplateResponse(
-        request=request,
-        name="formaddpcs.html",
-        context={"menu": menu, "pcs": pcs}
+@app.get("/formaddpcs") #Define una ruta HTTP GET en FastAPI #- Cuando un usuario accede a "/formaddpcs", se ejecutará la función form_add_pcs
+def form_add_pcs(request: Request): #maneja las solicitudes a /formaddpcs, - Recibe un parámetro request de tipo Request, que representa la solicitud HTTP del usuario.
+    menu = Menu(True, True) # Activa las opciones del menú
+    pcs = DaoPcs().get_all(database) # Obtiene la lista de PCs desde la base de datos
+    return templates.TemplateResponse( # Devuelve la plantilla del formulario
+        request=request, #Se pasa la solicitud HTTP a la plantilla.
+        name="formaddpcs.html", #- Se indica que la plantilla a renderizar es "formaddpcs.html".
+        context={"menu": menu, "pcs": pcs} #- : Se envían variables a la plantilla, permitiendo que menu y pcs sean utilizados dentro de "formaddpcs.html".
     )
 
 @app.post("/addpcs")
@@ -74,21 +74,21 @@ def add_pcs( #- Se define una función llamada add_alumnos, que se ejecutará cu
   ################## ELIMINAR ALUMNOS ##############################
 
 
-@app.get("/fromdelpcs")
+@app.get("/fromdelpcs") # Muestra el formulario para eliminar PCs
 def form_del_pcs(request: Request):
-    menu = Menu(True, True)
-    dao = DaoPcs()
-    pcs = dao.get_all(database)
+    menu = Menu(True, True)# Activa las opciones del menú
+    dao = DaoPcs() # Crea un objeto de la clase DaoPcs
+    pcs = dao.get_all(database) # Obtiene la lista de PCs desde la base de datos
     return templates.TemplateResponse(
         request=request,
         name="formdelpc.html",
-        context={"menu": menu, "alumnos": pcs}
+        context={"menu": menu, "pcs": pcs}
     )
 
-@app.post("/delpcs")
-def del_pcs(request: Request, pc_marca: Annotated[str, Form()]):
-    dao = DaoPcs()
-    dao.delete(database, pc_marca)
+@app.post("/delpcs") # Procesa el formulario para eliminar PCs
+def del_pcs(request: Request, pc_marca: Annotated[str, Form()]): # Recibe la marca del PC a eliminar
+    dao = DaoPcs() # Crea un objeto de la clase DaoPcs
+    dao.delete(database, pc_marca) ## Elimina el PC de la base de datos
     pcs = dao.get_all(database)
     menu = Menu(True, True)
     return templates.TemplateResponse(

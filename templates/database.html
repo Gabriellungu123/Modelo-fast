@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Computadoras</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <h1>Lista de Computadoras</h1>
-    <ul>
-        {% for pc in pcs %}
-            <li>Marca: {{ pc.marca }}, Tipo: {{ pc.tipo }}, Sistema: {{ pc.sistema }}, Procesador: {{ pc.procesador }}</li>
-        {% endfor %}
-    </ul>
-    <a href="/">Volver al inicio</a>
-</body>
-</html>
+{% extends "default.html" %}
+{% block title %} Tabla pcs {% endblock %}
+{% block content %}
+
+<div class="content">
+  <h2>TABLA DE pcs</h2>
+<table>
+<tr>
+    <th>marca</th>
+    <th>tipo</th>
+    <th>sistema</th>
+    <th>procesador</th>
+</tr>
+{%if pcs%}
+    {% for pc in pcs%}
+        <tr>
+            <td>{{pc.marca}}</td>
+            <td>{{pc.tipo}}</td>
+            <td>{{pc.sistema}}</td>
+            <td>{{pc.procesador}}</td>
+        </tr>
+    {%endfor%}
+{%else%}
+<tr>
+    <td colspan="4">No hay ordenadores registrados</td>
+</tr>
+{%endif%}
+
+
+</table>
+</div>
+{% endblock %}
