@@ -1,7 +1,7 @@
 import mysql.connector
 
 database = mysql.connector.connect(
-    host = "localhost",
+    host = "host.docker.internal",
     port = 3310,
     ssl_disabled = True,
     user = 'root',
