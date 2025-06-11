@@ -1,4 +1,4 @@
-# Lo que tiene que tener 
+# Lo que tiene que tener el main 
 from typing import Union
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
