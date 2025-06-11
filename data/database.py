@@ -1,9 +1,9 @@
 import mysql.connector
 
 database = mysql.connector.connect(
-    host = "mysql",
+    host = "localhost",
     port = 3310,
-    ssl_disabled = False,
+    ssl_disabled = True,
     user = 'root',
     password = 'clase',
     database = 'Ordenadores'
